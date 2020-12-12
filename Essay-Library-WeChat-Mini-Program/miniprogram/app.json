@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/schools/schools",
+    "pages/tools/tools",
+    "pages/index/index",
+    "pages/profiles/profiles",
+    "pages/submit/submit",
+    "pages/essay/essay",
+    "pages/names/names"
+  ],
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/tools/tools",
+      "text": "工具",
+      "iconPath": "assets/icon-tools.jpg",
+      "selectedIconPath": "assets/icon-tools-h.jpg"
+    },{
+      "pagePath": "pages/schools/schools",
+      "text": "学校",
+      "iconPath": "assets/icon-schools.jpg",
+      "selectedIconPath": "assets/icon-schools-h.jpg"
+    },{
+      "pagePath": "pages/profiles/profiles",
+      "text": "申请档案",
+      "iconPath": "assets/icon-profiles.jpg",
+      "selectedIconPath": "assets/icon-profiles-h.jpg"
+    }],
+    "color": "#000000",
+    "selectedColor": "#ff4747",
+    "backgroundColor": "#ffffff"
+  },
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "College Assistant",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}
