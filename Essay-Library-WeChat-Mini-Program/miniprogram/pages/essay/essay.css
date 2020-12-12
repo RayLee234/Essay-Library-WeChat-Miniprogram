@@ -1,0 +1,19 @@
+/* pages/essay/essay.wxss */
+.prompt {
+  font-size: large;
+  padding: 10rpx 30rpx 10rpx 30rpx;
+  text-align: justify;
+  color: #ff4747;
+  font-style: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.title {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: xx-large;
+  text-align: center;
+}
+.content {
+  font-size: medium;
+  padding: 0rpx 30rpx 30rpx 30rpx;
+  text-align: justify;
+}

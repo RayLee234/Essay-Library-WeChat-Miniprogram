@@ -1,0 +1,75 @@
+.swiper-box{
+  height:3600rpx;
+}
+.imagecontainer{
+  margin-top: 10rpx;
+  width:750rpx;
+  height:3600rpx;
+  position:relative;
+}
+.swiperimage{
+  margin:0;
+  border:0;
+  width:720rpx;
+  height:392rpx;
+}
+.swipertextbox{
+  margin-top: -10rpx;
+  width:750rpx;
+  height:3178rpx;
+  background: white;
+  padding: 20rpx 20rpx 20rpx 20rpx;
+}
+.swipertitle{
+  font-size: 38rpx;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.swipertext{
+  font-size: medium;
+  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+}
+.subtitle{
+  font-size: 35rpx;
+  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+}
+.TEXT {
+  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+  font-size: medium;
+  /* font-style: italic; */
+  color: #ff4747;
+}
+.searchbox{
+  margin-top: 0rpx;
+  margin-left: 10rpx;
+  width:730rpx;
+  height:60rpx;
+  border-width: 10rpx;
+  border-color: black;
+  border-radius: 30rpx;
+  background: #ff4747;
+  color: white;
+}
+.searchinput{
+  height:50rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  z-index: 2;
+}
+.submitbutton{
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  right: 30rpx;
+  top: 315rpx;
+  z-index: 3;
+  color: #fee0ba;
+}
+.submiticon{
+  position: absolute;
+  width:56rpx;
+  height:56rpx;
+  right: 30rpx;
+  top: 0rpx;
+  z-index: 2;
+}

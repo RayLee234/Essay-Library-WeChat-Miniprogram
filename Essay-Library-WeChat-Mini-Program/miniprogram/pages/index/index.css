@@ -1,0 +1,14 @@
+.long-button {
+  width: 30px;
+}
+.block {
+  height: 10px;
+}
+
+input{
+  border: 1px solid blue;
+  height: 50px;
+}
+textarea {
+  border: 1px solid blue;
+}

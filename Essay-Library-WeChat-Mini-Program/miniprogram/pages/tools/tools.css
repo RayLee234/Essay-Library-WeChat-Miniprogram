@@ -1,0 +1,50 @@
+/* pages/tools/tools.wxss */
+.title {
+  padding: 30rpx 30rpx 20rpx 30rpx;
+  font-size: x-large;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: #ff4747;
+}
+
+.subtitle {
+  padding: 0rpx 30rpx 10rpx 40rpx;
+  font-size: large;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: #ff4747;
+}
+.inputView {
+  padding: 10rpx 30rpx 20rpx 30rpx;
+}
+.btnView {
+  padding: 10rpx 0rpx 20rpx 0rpx;
+}
+.input {
+  background-color: #fee0ba;
+  height: 50rpx;
+  width: 640rpx;
+  border-radius: 25rpx;
+  padding: 0rpx 30rpx 0rpx 30rpx;
+}
+.input2 {
+  background-color: #fee0ba;
+  height: 50rpx;
+  width: 580rpx;
+  border-radius: 25rpx;
+  padding: 0rpx 30rpx 0rpx 30rpx;
+  display: inline-block;
+}
+.input_score {
+  background-color: #fee0ba;
+  height: 50rpx;
+  width: 80rpx;
+  border-radius: 25rpx;
+  padding: 0rpx 30rpx 0rpx 30rpx;
+  display: inline-flex;
+}
+.result {
+  padding: 20rpx 30rpx 20rpx 30rpx;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.lucida {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

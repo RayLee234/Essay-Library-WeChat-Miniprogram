@@ -1,0 +1,101 @@
+<image src="https://636f-college-assitant-h3d1g-1302512797.tcb.qcloud.la/banner.GIF?sign=34ababd76538a5bbf3a0236a5f9438ba&t=1594185956" mode="aspectFit" style="width:100%;height:290rpx"></image>
+<view style="background-color:#fee0ba;padding:10rpx 0rpx 10rpx 0rpx">
+  <view class="searchbox">
+    <form bindsubmit="Getinput">
+    <input class='searchinput' placeholder="请输入您要查看的学校" placeholder-style="color:white;font-size:medium;" name='input'></input>
+      <button class='submitbutton' size="mini" form-type='submit' style='width:86rpx;height:56rpx;background-color:#ff4747'>
+        <image class='submiticon' src='../../assets/icon-search-1.jpg' style="width:56rpx;height:56rpx"></image>
+      </button>
+    </form>
+  </view>
+</view>
+<swiper class="swiper-box" indicator-dots="{{false}}" autoplay="{{true}}" interval="{{3000}}" duration="1000" circular="{{true}}" current="{{schoolNum}}">
+  <swiper-item wx:for="{{collegedata}}">
+    <view data-path="{{item.path}}" class='imagecontainer'>
+      <view style="padding:15rpx 15rpx 15rpx 15rpx; background-color:#fee0ba;">
+        <image class='swiperimage' src="{{item.imagepath}}"></image>
+      </view>
+      <view class='swipertextbox'>
+        <text class='swipertitle'>{{item.names[0]}}\n</text>
+        <text class='swipertitle'>{{item.names[1]}}\n</text>
+        <view style="padding: 10rpx 0rpx 0rpx 0rpx">
+          <button size="mini" type="primary" style="background-color:#ff4747;display:inline-flex;" bindtap="goToPage">学校详情</button>
+          <text decode> &ensp;</text>
+          <button size="mini" type="primary" style="background-color:#ff4747;display:inline-flex;" bindtap="goToProfiles" data-num="{{index}}">学长档案</button>
+        </view>
+        <!-- Rankings -->
+        <view style="padding: 10rpx 0rpx 2rpx 0rpx;">
+          <image src="../../assets/icon-rankings.jpg" style="height: 40rpx; width: 40rpx;" mode="widthFit"></image><text decode class="subtitle">&ensp;排名</text>
+        </view>
+        <text class='swipertext'>2020年U.S.News美国大学排名第 </text> <text class="TEXT">{{item.usnews}}</text> <text class="swipertext"> 名</text>
+        <text wx:if="{{collegedata[index].usnews==collegedata[index+1].usnews||collegedata[index].usnews==collegedata[index-1].usnews}}" class="swipertext">（并列）</text>
+        <text class='swipertext'>\n2020年QS美国大学排名第 {{item.qsus}} 名\n</text>
+        <!-- SAT Range -->
+        <view style="padding: 10rpx 0rpx 2rpx 0rpx;">
+          <image src="../../assets/icon-satRange.jpg" style="height: 40rpx; width: 40rpx;" mode="widthFit"></image><text decode class="subtitle">&ensp;SAT中位分数</text>
+        </view>
+        <block wx:if="{{item.sat[0]>800}}">
+          <view>
+            <text class="TEXT">{{item.sat[0]}} ~ {{item.sat[1]}}\n</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view>
+            <image src="../../assets/icon-math.jpg" mode="widthFit" style="height:30rpx; width:30rpx;"></image><text decode class="swipertext">&ensp;数学：</text><text class="TEXT">{{item.sat[0][0]}} ~ {{item.sat[0][1]}}\n</text>
+            <image src="../../assets/icon-reading.jpg" mode="widthFit" style="height:30rpx; width:30rpx;"></image><text decode class="swipertext">&ensp;阅读和文法：</text><text class="TEXT">{{item.sat[1][0]}} ~ {{item.sat[1][1]}}\n</text>
+          </view>
+        </block>
+        <!-- Strength -->
+        <view style="padding: 10rpx 0rpx 2rpx 0rpx;">
+          <image src="../../assets/icon-strength.jpg" mode="widthFit" style="height: 40rpx; width: 40rpx;"></image><text decode class="subtitle">&ensp;强势专业</text>
+          <view wx:for="{{item.majors}}" wx:for-item="major">
+            <text class="swipertext">•	{{major}}</text>
+          </view>
+        </view>
+        <!-- Tuition -->
+        <view style="padding: 10rpx 0rpx 2rpx 0rpx;">
+          <image src="../../assets/icon-tuition.jpg" mode="widthFit" style="height: 40rpx; width: 40rpx;"></image><text decode class="subtitle">&ensp;学费</text>
+          <view>
+            <text class="swipertext">${{item.tuition}}</text>
+            <block wx:if="{{item.tuitionin > 0}}">
+              <text class="swipertext" decode>（州外）&ensp;&ensp;${{item.tuitionin}}（州内）</text>
+            </block>
+          </view>
+        </view>
+        <!-- Enrollment -->
+        <view style="padding: 10rpx 0rpx 2rpx 0rpx;">
+          <image src="../../assets/icon-enrollment.jpg" mode="widthFit" style="height: 40rpx; width: 40rpx;"></image><text decode class="subtitle">&ensp;本科生人数</text>
+          <view>
+            <text class="swipertext">{{item.enrollment}}</text>
+          </view>
+        </view>
+        <!-- Location -->
+        <view style="padding: 10rpx 0rpx 2rpx 0rpx">
+          <image src="../../assets/icon-location.jpg" mode="widthFit" style="height: 40rpx; width: 40rpx;"></image><text decode class="subtitle">&ensp;地理位置</text>
+          <view>
+            <text class="swipertext">{{item.location}}</text>
+          </view>
+          <map markers="{{item.marker}}" longitude="-97.5" latitude="40.5" scale="3" style="width:710rpx;height:300rpx;"></map>
+        </view>
+        <!-- Testing Policies -->
+        <view style="padding: 10rpx 0rpx 2rpx 0rpx">
+          <image src="../../assets/icon-testPolicy.jpg" mode="widthFit" style="height:40rpx; width:40rpx"></image><text decode class="subtitle">&ensp;标化考试及送分政策</text>
+          <view>
+            <text decode>SAT/TOEFL送分代码：{{item.satCode}}</text>
+          </view>
+        </view>
+        <!-- Essays -->
+        <view style="padding: 10rpx 0rpx 2rpx 0rpx">
+          <image src="../../assets/icon-essays.jpg" mode="widthFit" style="height:40rpx; width:40rpx"></image><text decode class="subtitle">&ensp;补充文书</text>
+          <view style="padding: 0rpx 20rpx 0rpx 0rpx">
+            <text class="swipertext">{{item.essay}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
+<view style="text-align: center; padding: 50rpx 0rpx 10rpx 0rpx; font-size: small;">
+  <text>联系我们 / Contact Us</text>
+  <text decode>\n添加微信：RayLi020304&ensp;&ensp;shelsql&ensp;&ensp;sherrykitty2002</text>
+</view>

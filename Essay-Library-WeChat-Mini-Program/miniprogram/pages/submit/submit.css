@@ -1,0 +1,34 @@
+.searchbox{
+  margin-top: 0rpx;
+  margin-left: 10rpx;
+  width:730rpx;
+  height:60rpx;
+  border-width: 10rpx;
+  border-color: black;
+  border-radius: 30rpx;
+  background: #ff4747;
+  color: white;
+}
+.searchinput{
+  height:50rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  z-index: 2;
+}
+.submitbutton{
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  right: 30rpx;
+  top: 315rpx;
+  z-index: 3;
+  color: #fee0ba;
+}
+.submiticon{
+  position: absolute;
+  width:56rpx;
+  height:56rpx;
+  right: 30rpx;
+  top: 0rpx;
+  z-index: 2;
+}

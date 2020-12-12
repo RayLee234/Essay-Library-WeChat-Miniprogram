@@ -1,0 +1,60 @@
+/* pages/profiles/profiles.wxss */
+.table {
+  padding: 15rpx;
+  box-sizing: border-box;
+}
+.each-profile {
+  display: flex;
+  height: 250rpx;
+  margin: 5rpx;
+}
+.left {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+.left image {
+  width: 90%;
+  height: 90%;
+}
+.logo {
+  flex: 8;
+  display: flex;
+}
+.school-name {
+  flex: 2;
+  display: flex;
+}
+.right {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+}
+.upper {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: x-large;
+}
+.middle {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: large;
+}
+.icon {
+  height: 40rpx;
+  width: 40rpx;
+}
+.major-icon {
+  height: 35rpx;
+  width: 35rpx;
+}
+.major {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: medium;
+}
+.lower {
+  height: 48rpx;
+}
+.link {
+  height: 50rpx;
+  font-family: 宋体;
+  font-style: italic;
+}

@@ -1,0 +1,15 @@
+<view>Front Page</view>
+
+<button class="long-button" type="primary" bindtap="getData">Click to obtain data</button>
+
+<view class="block"> </view>
+<button type="primary" bindtap="addData">Insert Data</button>
+
+<view wx:for="{{dataObj}}" wx:key="index">{{item.title}} - {{item.author}}</view>
+
+<form bindsubmit="buttonSubmit">
+  <input name="title" placeholder="please input title"></input>
+  <textarea name="content" placeholder="please write your content here!"></textarea>
+  <button type="primary" form-type="submit">Submit</button>
+  <button type="warn" form-type="reset">Reset</button>
+</form>

@@ -1,0 +1,22 @@
+<!--pages/essay/essay.wxml-->
+<view class="title">{{school}}</view>
+<block wx:if="{{PSValid==true}}">
+  <view class="prompt">
+    <text>{{PS.text}}</text>
+  </view>
+  <view class="content">
+    <text style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">{{PS.content}}</text>
+  </view>
+</block>
+<view wx:for="{{otherEssays}}" wx:for-index="IDX" wx:for-item="essayGroup">
+  <view wx:for="{{essayGroup.content}}" wx:for-index="idx" wx:for-item="essay">
+    <block wx:if="{{valid[IDX][idx]}}">
+      <view class="prompt">
+        <text>{{essayGroup.text[idx]}}</text>
+      </view>
+      <view class="content">
+        <text style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">{{essay}}</text>
+      </view>
+    </block>
+  </view>
+</view>

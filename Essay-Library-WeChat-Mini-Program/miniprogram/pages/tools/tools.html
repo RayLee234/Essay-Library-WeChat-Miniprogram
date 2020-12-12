@@ -1,0 +1,81 @@
+<!--pages/tools/tools.wxml-->
+<image src="https://636f-college-assitant-h3d1g-1302512797.tcb.qcloud.la/banner.GIF?sign=34ababd76538a5bbf3a0236a5f9438ba&t=1594185956" mode="aspectFit" style="width:100%;height:290rpx"></image>
+<view class="title"> Will you get in? </view>
+<view class="subtitle">See how your score compare to admitted students and your candidacy.</view>
+<view>
+  <form bindsubmit="calculate">
+    <view class="inputView">
+      <input class="input2" placeholder="请输入您感兴趣的学校名称" name="school"></input>
+      <icon bindtap="askForHelp" type="info" size="20" color="#ff4747" style="display:inline-flex;"></icon>
+    </view>
+    <view class="inputView">
+      <input class="input" placeholder="请输入您的SAT分数" type="number" maxlength="4" name="score"></input>
+    </view>
+    <view class="btnView">
+      <button form-type="submit" type="primary" style="background-color:#ff5757">竞争力查询</button>
+    </view>
+  </form>
+  <view wx:if="{{submitted1}}">
+    <view class="result">
+      <text>文书馆中共有{{total}}位被{{school}}录取的学长。</text>
+      <text wx:if="{{total > 0}}">他们的SAT平均分为{{avgScore}}。</text>
+      <text>其中，{{less}}人分数在你之下，</text>
+      <text>{{equal}}人分数与你相同。</text>
+    </view>
+  </view>
+</view>
+
+<view class="title"> Score conversion </view>
+<view class="subtitle">ACT & SAT</view>
+<view>
+  <form bindsubmit="solveScore1">
+    <view class="inputView">
+      <input class="input_score" placeholder="分数" name="score" maxlength="2" wx:if="{{actFirst}}" type="number"></input>
+      <input class="input_score" placeholder="分数" name="score" maxlength="4" wx:else type="number"></input>
+      <text decode wx:if="{{actFirst}}" class="lucida"> in ACT&ensp;&ensp;</text>
+      <text decode wx:else class="lucida"> in SAT&ensp;&ensp;</text>
+      <image src="../../assets/icon-swap.jpg" mode="widthFit" style="width:30rpx; height:30rpx;" bindtap="switch"></image>
+      <text decode wx:if="{{actFirst}}" class="lucida">&ensp;&ensp;SAT</text>
+      <text decode wx:else class="lucida">&ensp;&ensp;ACT</text>
+      <view class="btnView">
+        <button form-type="submit" type="primary" style="background-color:#ff5757">分数换算</button>
+      </view>
+    </view>
+  </form>
+  <view wx:if="{{submitted2}}">
+    <block wx:if="{{actFirst}}">
+      <view class="result">
+        <text wx:if="{{sat[0] > 0}}">根据你在ACT中{{act}}分的表现，预估你在SAT中的表现为{{sat[0]}} ~ {{sat[1]}}分</text>
+        <text wx:else>你的ACT分数太低，无法进行有效预测</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="result">
+        <text wx:if="{{act > 0}}">根据你在SAT中{{sat}}分的表现，预估你在ACT中的表现为{{act}}分</text>
+        <text wx:else>你的SAT分数太低，无法进行有效预测</text>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class="subtitle">Duolingo to TOEFL iBT</view>
+<view>
+  <form bindsubmit="solveScore2">
+    <view class="inputView">
+      <input class="input_score" placeholder="分数" name="score" maxlength="3" type="number"></input>
+      <text decode class="lucida"> in Duolingo&ensp;&ensp;</text>
+      <image src="../../assets/icon-to.jpg" mode="widthFit" style="width:25rpx; height:25rpx;"></image>
+      <text decode class="lucida">&ensp;&ensp;TOEFL iBT</text>
+      <view class="btnView">
+        <button form-type="submit" type="primary" style="background-color:#ff5757">分数换算</button>
+      </view>
+    </view>
+  </form>
+  <view wx:if="{{submitted3}}" class="result">
+    <text>根据你在Duolingo中{{duolingo}}分的表现，预估你在TOEFL iBT中的表现为{{tfl[0]}} ~ {{tfl[1]}}分</text>
+  </view>
+</view>
+<view style="text-align: center; padding: 50rpx 0rpx 10rpx 0rpx; font-size: small;">
+  <text>联系我们 / Contact Us</text>
+  <text decode>\n添加微信：RayLi020304&ensp;&ensp;shelsql&ensp;&ensp;sherrykitty2002</text>
+</view>

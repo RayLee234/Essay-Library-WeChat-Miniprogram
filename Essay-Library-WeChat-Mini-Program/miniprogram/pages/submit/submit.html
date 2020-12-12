@@ -1,0 +1,101 @@
+<image src="https://636f-college-assitant-h3d1g-1302512797.tcb.qcloud.la/banner.GIF?sign=34ababd76538a5bbf3a0236a5f9438ba&t=1594185956" mode="aspectFit" style="width:100%;height:290rpx"></image>
+
+<view style="background-color:#fee0ba;padding:10rpx 0rpx 10rpx 0rpx">
+  <view class="searchbox">
+    <form bindsubmit="searchMySchool">
+    <input class='searchinput' placeholder="请输入录取学校" placeholder-style="color:white;font-size:medium;" name='input'></input>
+      <button class='submitbutton' size="mini" form-type='submit' style='width:86rpx;height:56rpx;background-color:#ff4747'>
+        <image class='submiticon' src='../../assets/icon-search-1.jpg' style="width:56rpx;height:56rpx"></image>
+      </button>
+    </form>
+  </view>
+</view>
+
+<view wx:if="{{mySchool!=-1}}" style="padding:0rpx 20rpx 0rpx 20rpx">
+  <view style="padding:30rpx 0rpx 20rpx 0rpx; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size:x-large">
+    <image src="../../assets/congratulations.jpg" mode="widthFix" style="width:200rpx; display:inline-flex;"></image><text>on your acceptance to {{essayPrompts[mySchool].names[0]}}, and thank you for wanting to share your application profile with us - and, of course, thousands of students who will be taking the same way with you in the years to come!\n</text>
+  </view>
+  <form bindsubmit="submitProfile">
+    <view style="padding:8rpx 0rpx 8rpx 0rpx;">
+      <text decode style="font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Please&ensp;</text><picker mode="selector" range="{{years}}" bindchange="changeYear" style="font-size:x-large; color:#ff4747;display:inline-flex;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" value="3">enter</picker><text decode style="font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">&ensp;the year in which you graduated (or will graduate) from your high school</text><text wx:if="{{year>0}}" decode style="color:#ff4747; font-size:x-large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-style: italic;">&ensp;&ensp;{{year}}</text>
+    </view>
+    <view style="padding:8rpx 0rpx 8rpx 0rpx;">
+      <text decode style="font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Please&ensp;</text><picker mode="selector" range="{{testOptions}}" bindchange="changeScoreType" style="font-size:x-large; color:#ff4747;display:inline-flex;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">select</picker><text decode style="font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">&ensp;the type of standardized test which you submitted to {{essayPrompts[mySchool].names[0]}}</text><text decode style="color:#ff4747; font-size:x-large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-style: italic" wx:if="{{scoreType==0}}">&ensp;&ensp;SAT</text><text decode style="color:#ff4747; font-size:x-large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-style: italic;" wx:elif="{{scoreType==1}}">&ensp;&ensp;ACT</text>
+    </view>
+    <view style="padding:8rpx 0rpx 8rpx 0rpx;">
+      <text decode style="font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" wx:if="{{scoreType == 0}}">Please&ensp;</text><picker mode="selector" range="{{SATScoreRange}}" value="5" bindchange="changeScore" wx:if="{{scoreType == 0}}" style="font-size:x-large; color:#ff4747;display:inline-flex;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">report</picker><text decode style="font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" wx:if="{{scoreType == 0}}">&ensp;your score</text>
+      <text decode style="font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" wx:if="{{scoreType == 1}}">Please&ensp;</text><picker mode="selector" range="{{ACTScoreRange}}" value="1" bindchange="changeScore" wx:if="{{scoreType == 1}}" style="font-size:x-large; color:#ff4747;display:inline-flex;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">report</picker><text decode style="font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" wx:if="{{scoreType == 1}}">&ensp;your score</text><text decode style="color:#ff4747; font-size:x-large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-style: italic;" wx:if="{{score > 0}}">&ensp;&ensp;{{score}}</text>
+    </view>
+    <view wx:for="{{majorFields}}" style="padding:8rpx 0rpx 8rpx 0rpx;">
+      <text decode style="font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Please&ensp;</text><picker mode="selector" range="{{majorOptions}}" value="0" bindchange="addMajor" data-major-index="{{index}}" style="font-size:x-large; color:#ff4747;display:inline-flex;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">select</picker><text decode style="font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">&ensp;your intended major on the application</text>
+    </view>
+    <image wx:if="{{majorFields<3}}" bindtap="addMajorNum" src="../../assets/add-icon.jpg" mode="aspectFit" style="display:inline-flex;width:50rpx;height:50rpx;"></image><image wx:if="{{majorFields>1}}" bindtap="deleteMajorNum" src="../../assets/remove-icon.jpg" mode="aspectFit" style="display:inline-flex;width:50rpx;height:50rpx;"></image>
+    <block wx:if="{{essayPrompts[mySchool].PS==undefined}}">
+      <view style="padding:30rpx 0rpx 8rpx 0rpx; font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Please check the personal essay option which you selected on your application to {{essayPrompts[mySchool].names[0]}}</view>
+      <radio-group bindchange="choosePersonalStatement">
+        <view wx:for="{{personalStatementOptions}}" wx:key="index" style=" padding:8rpx 0rpx 8rpx 0rpx">
+          <label>
+            <radio value="{{item.id}}" color="#ff4747" style="zoom: 70%; "></radio>
+            <text style="font-size:medium; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{item.text}}</text>
+          </label>
+        </view>
+      </radio-group>
+      <view style="background-color: #ff4747; padding:0rpx 8rpx 0rpx 8rpx; color:white;">Personal Essay</view>
+      <view style="border:1px solid #ff4747; padding:8rpx 8rpx 8rpx 8rpx; font-size:medium; font-family:Times New Roman,Times,serif;">
+        <textarea maxlength="-1" placeholder="Please paste your essay here" name="PS" style="height:500rpx;"></textarea>
+      </view>
+    </block>
+    <view style="padding:30rpx 0rpx 8rpx 0rpx; font-size:large; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Supplemental Essays</view>
+    <block wx:for="{{essayPrompts[mySchool].prompts}}" wx:for-item="essayGroup" wx:for-index="IDX" wx:key="index">
+      <block wx:if="{{essayGroup.num == undefined}}">
+        <view style="padding:16rpx 0rpx 8rpx 0rpx">
+          <text style="font-size:medium; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{essayGroup.text}}</text>
+          <text wx:if="{{essayGroup.wordLimit !== undefined}}" style="font-size:medium; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> ({{essayGroup.wordLimit}} words) </text>
+        </view>
+        <view style="background-color: #ff4747; padding:0rpx 8rpx 0rpx 8rpx; color:white;">Supplemental Essay</view>
+        <view style="border:1px solid #ff4747; padding:8rpx 8rpx 8rpx 8rpx; font-size:medium; font-family:Times New Roman,Times,serif;">
+          <textarea maxlength="-1" placeholder="Please paste your essay here" name="{{IDX}}" style="height:500rpx;"></textarea>
+        </view>
+      </block>
+      <block wx:else>
+        <view style="padding:16rpx 0rpx 8rpx 0rpx">
+          <text style="font-size:medium; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Please choose {{essayGroup.num}} from the following to answer</text><text wx:if="{{essayGroup.wordLimit!=undefined}}" style="font-size:medium; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> ({{essayGroup.wordLimit}} words</text><text wx:if="{{essayGroup.num>1}}" style="font-size:medium; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> each</text><text wx:if="{{essayGroup.wordLimit!=undefined}}" style="font-size:medium; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">) </text>
+        </view>
+        <checkbox-group wx:if="{{essayGroup.num>1}}" bindchange="chooseEssayPrompts" data-current-essay="{{IDX}}">
+          <view wx:for="{{essayGroup.text}}" wx:for-item="prompt" wx:for-index="idx" wx:key="index">
+            <label>
+              <checkbox value="{{idx}}" color="#ff4747" style="zoom: 70%;"></checkbox>
+              <text style="font-size:medium; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{prompt}}</text>
+            </label>
+          </view>
+        </checkbox-group>
+        <radio-group wx:else bindchange="chooseEssayPrompts" data-current-essay="{{IDX}}">
+          <view wx:for="{{essayGroup.text}}" wx:for-item="prompt" wx:for-index="idx" wx:key="idx" style="padding:10rpx 0rpx 10rpx 0rpx">
+            <label>
+              <radio value="{{idx}}" color="#ff4747" style="zoom: 70%;"></radio>
+              <text style="font-size:medium; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{prompt}}</text>
+            </label>
+          </view>
+        </radio-group>
+        <view wx:if="{{essayGroup.num>1}}" style="padding:10rpx 0rpx 10rpx 0rpx">
+          <text style="font-size:medium; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Please paste your essays by order</text>
+        </view>
+        <view style="background-color: #ff4747; padding:0rpx 8rpx 0rpx 8rpx; color:white;">Supplemental Essay</view>
+        <view wx:for="{{essayGroup.num}}" wx:key="*this" style="border:1px solid #ff4747; padding:8rpx 8rpx 8rpx 8rpx; font-size:medium; font-family:Times New Roman,Times,serif;">
+          <textarea maxlength="-1" placeholder="Please paste your essay here" name="{{IDX}}.{{index}}" style="height:500rpx;"></textarea>
+        </view>
+      </block>
+    </block>
+    <view style="padding:30rpx 0rpx 20rpx 0rpx; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size:large">
+      <text>We understand your essays might contain some of your extremely personal eperiences. Securing your personal information is of our top priority. Therefore, we didn't ask, and will in no ways make public, your name and identity. Sincerely, we would like to thank you again for your indispensible contribution!\n</text>
+    </view>
+    <view style="padding:40rpx 0rpx;">
+      <button form-type="submit" type="primary" style="background-color:#ff4747;">Submit/提交</button>
+    </view>
+  </form>
+</view>
+<view wx:else>
+  <view wx:if="{{hasSearched>0}}" style="font-size:x-large; padding:20rpx 20rpx 20rpx 20rpx">
+    <text decode="{{true}}">抱歉，未能找到包含以上关键字的学校，请检查拼写及大小写</text><icon bindtap="askForHelp" type="info" size="20" color="#ff4747"></icon>
+  </view>
+</view>
